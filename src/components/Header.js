@@ -18,11 +18,9 @@ export const Header = () => (
                 <li className="list-inline-item"><Link to="/pants" replace>Pants</Link></li>
                 
             </ul>
-            <ButtonToolbar>
-            <Button variant="dark">Login</Button>
             <Link to="/cart"><Button className="btn btn-info btn-md"><i className="fa fa-shopping-cart" aria-hidden="true"></i>
              Shopping Cart</Button> </Link>
-             </ButtonToolbar>
+       
         </div>
     </nav>
 )
