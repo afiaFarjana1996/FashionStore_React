@@ -7,7 +7,7 @@ import { Header } from './header.js'
 import { Home } from './home.js'
 import ProductList from './ProductList'
 import ShoppingCartMainPage from '../shoppingCart/ShoppingCartMainPage'
-import {ShippingDetails} from '../shoppingCart/Checkout'
+import ShippingDetails from '../shoppingCart/Checkout'
 
 const shoes = [{
     productId: 1,
