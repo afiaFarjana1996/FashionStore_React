@@ -75,6 +75,7 @@ const App = () => (
                 render={() => (<ShoppingCartMainPage />)} />
             <Route path='/checkout' 
             render={() => (<ShippingDetails />)}/>
+            
         </Switch>
     </div>
 )
