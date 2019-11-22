@@ -2,8 +2,12 @@
 
 import React from 'react'
 
+
 export const Home = () => (
     <div className="jumbotron">
-        <h1>Library Management System</h1>
+        <h1>GC Fashion Store</h1>
     </div>
+  
+
+
 )
