@@ -2,10 +2,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProductRow from './ProductRow'
+import ProductRow from './ProductRow' 
 
 
-const  ProductList = ({
+const  ProductList = ({ 
     category = '', 
     products = []
 }) => (
@@ -26,7 +26,7 @@ const  ProductList = ({
             <tbody>
                 {products.map(product => (
                     <ProductRow key={product.productId}
-                        product={product}/>
+                        product={product}/> 
                 ))}
             </tbody>
         </table>

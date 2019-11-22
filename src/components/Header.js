@@ -1,6 +1,7 @@
 "use strict"
 
 import React from 'react'
+import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const Header = () => (
@@ -15,13 +16,15 @@ export const Header = () => (
                 <li className="list-inline-item"><Link to="/shoes" replace>Shoes</Link></li>
                 <li className="list-inline-item"><Link to="/shirts" replace>Shirts</Link></li>
                 <li className="list-inline-item"><Link to="/pants" replace>Pants</Link></li>
+                
             </ul>
+            <Link to="/cart"><Button className="btn btn-info btn-md"><i className="fa fa-shopping-cart" aria-hidden="true"></i>
+             Shopping Cart</Button> </Link>
             
             <ul className="list-inline">
             <li className="list-inline-item"><Link to="/login" replace>Log in</Link></li>
             <li className="list-inline-item"><Link to="/login" replace>Register</Link></li>
             </ul>
-          
         </div>
     </nav>
 )
