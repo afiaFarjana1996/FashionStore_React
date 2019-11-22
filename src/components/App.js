@@ -73,6 +73,7 @@ const App = () => (
                     products={pants}/>)} />
             <Route path='/cart'
                 render={() => (<ShoppingCartMainPage />)} />
+            
         </Switch>
     </div>
 )
