@@ -12,15 +12,18 @@ const shoes = [{
     productId: 1,
     brand: 'Nike',
     name: 'Air Jordan',
-    price: 100
+    size: '10',
+    price: 100,
 }, {
     productId: 2,
     brand: 'Adidas',
+    size: '11',
     name: 'Running Shoes',
     price: 100
 }, {
     productId: 3,
     brand: 'Nike',
+    size: '12',
     name: 'Running Shoes',
     price: 100
 }]
@@ -29,15 +32,18 @@ const shirts = [{
     productId: 1,
     brand: 'Nike',
     name: 'Basketball shirt',
-    price: 100
+    price: 100,
+    size: 'S'
 }, {
     productId: 2,
     brand: 'Polo',
+    size: 'M',
     name: 'polo',
     price: 100
 }, {
     productId: 3,
     brand: 'NFL',
+    size: 'L',
     name: 'jersey',
     price: 100
 }]
@@ -45,11 +51,13 @@ const shirts = [{
 const pants = [{
     productId: 1,
     brand: 'X',
+    size: 'L',
     name: 'sweatpants',
     price: 100
 }, {
     productId: 2,
     brand: 'Levi',
+    size: 'M',
     name: 'jeans',
     price: 100
 }]
