@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Header } from './header.js'
 import { Home } from './home.js'
 import ProductList from './ProductList'
+import ShoppingCartMainPage from '../shoppingCart/ShoppingCartMainPage'
 
 
 const shoes = [{
@@ -70,6 +71,8 @@ const App = () => (
             <Route path='/pants'
                 render={() => (<ProductList category='Pants'
                     products={pants}/>)} />
+            <Route path='/cart'
+                render={() => (<ShoppingCartMainPage />)} />
         </Switch>
     </div>
 )
