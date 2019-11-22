@@ -1,7 +1,7 @@
 "use strict"
 
 import React from 'react'
-import {Button, ButtonToolbar} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export const Header = () => (
@@ -20,7 +20,7 @@ export const Header = () => (
             </ul>
             <Link to="/cart"><Button className="btn btn-info btn-md"><i className="fa fa-shopping-cart" aria-hidden="true"></i>
              Shopping Cart</Button> </Link>
-       
+            
         </div>
     </nav>
 )
