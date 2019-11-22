@@ -19,7 +19,6 @@ export const Header = () => (
                 
             </ul>
            
-            
             <ul className="list-inline">
             <li className="list-inline-item"><Link to="/login" replace>Log in</Link></li>
             <li className="list-inline-item"><Link to="/login" replace>Register</Link></li>
