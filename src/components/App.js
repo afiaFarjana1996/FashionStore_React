@@ -70,6 +70,7 @@ const App = () => (
             <Route path='/pants'
                 render={() => (<ProductList category='Pants'
                     products={pants}/>)} />
+            
         </Switch>
     </div>
 )
