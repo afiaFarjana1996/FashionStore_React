@@ -18,7 +18,7 @@ export const Header = () => (
                 <li className="list-inline-item"><Link to="/pants" replace>Pants</Link></li>
                 
             </ul>
-           
+                
             <ul className="list-inline">
             <li className="list-inline-item"><Link to="/login" replace>Log in</Link></li>
             <li className="list-inline-item"><Link to="/login" replace>Register</Link></li>
