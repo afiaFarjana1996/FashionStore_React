@@ -62,7 +62,7 @@ render(){
   const subTotal = ShoppingCart.reduce((total,item) => total+item.price,0);
   const tax = subTotal * 0.08;
   const total = subTotal+tax;
-  this.setState = ({
+  this.setState = () => ({
     subTotal: subTotal,
     totalItem: totalItem,
     tax : tax,
