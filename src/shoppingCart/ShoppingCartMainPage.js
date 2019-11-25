@@ -61,7 +61,7 @@ render(){
   const subTotal = ShoppingCart.reduce((total,item) => total+item.price,0);
   const tax = subTotal * 0.08;
   const total = subTotal+tax;
-  this.setState = ({
+  this.setState = () => ({
     subTotal: subTotal,
     totalItem: totalItem,
     tax : tax,
@@ -88,7 +88,7 @@ render(){
          </tbody>
          </Table>
          </div>
-          <Link to="/checkout"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
+          <Link to="/confirmPayment"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
            Proceed to Checkout
           </Button></Link>
        </div>
