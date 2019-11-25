@@ -23,15 +23,19 @@ const ShowTotal = (props) => {
 export const SaveCartData = () => 
   {
     return(
-      <div className="justify-content-md-center">
+        <div className='container'>
+        <div className='d-flex align-items-center'>
        <Table striped>
         <tr><td>TotalItem:</td><td>4</td></tr>
          <tr><td>Total:</td><td>350.0</td></tr>
          <tr><td>Tax:</td><td>350.0</td></tr>
          <tr><td>subTotal:</td><td>350.0</td></tr>
          </Table>
+         </div>
+         
          <Button className="page btn btn-sm btn-info" > Confirm Payment </Button>
          </div>
+        
       
     );
   }
@@ -65,7 +69,8 @@ render(){
     total: total
   });
   return (
-       <div className="justify-content-md-center">
+         <div className='container'>
+        <div className='d-flex align-items-center'>
        <Table striped>
          <thead>
          <tr><th>Product Name</th>
@@ -83,6 +88,7 @@ render(){
          <ShowTotal stringValue={"Total:"} numericValue={total.toFixed(2)}/>
          </tbody>
          </Table>
+         </div>
           <Link to="/checkout"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
            Proceed to Checkout
           </Button></Link>
