@@ -1,5 +1,6 @@
 
 import React,{Component} from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import {Table,Button} from 'react-bootstrap'
 import {ShoppingCart} from '../mockData/CartData'
@@ -19,13 +20,50 @@ const ShowTotal = (props) => {
   );
 }
 
+export const SaveCartData = () => 
+  {
+    return(
+      <div className="justify-content-md-center">
+       <Table striped>
+        <tr><td>TotalItem:</td><td>4</td></tr>
+         <tr><td>Total:</td><td>350.0</td></tr>
+         <tr><td>Tax:</td><td>350.0</td></tr>
+         <tr><td>subTotal:</td><td>350.0</td></tr>
+         </Table>
+         <Button className="page btn btn-sm btn-info" > Confirm Payment </Button>
+         </div>
+      
+    );
+  }
+
+   
+
+
 class ShoppingCartMainPage extends Component{
+
+  constructor(props){
+     super(props);
+     this.state={
+       subTotal: 0,
+       totalItem: 0,
+       tax: 0,
+       total: 0
+
+     }
+  }
   
 render(){
   const shoppingCartItem = ShoppingCart.map(item => <ShowCart key={item.id} item={item} />);
+  const totalItem = ShoppingCart.reduce((total,item) => total+item.quantity,0);
   const subTotal = ShoppingCart.reduce((total,item) => total+item.price,0);
   const tax = subTotal * 0.08;
   const total = subTotal+tax;
+  this.setState = ({
+    subTotal: subTotal,
+    totalItem: totalItem,
+    tax : tax,
+    total: total
+  });
   return (
        <div className="justify-content-md-center">
        <Table striped>
@@ -53,5 +91,11 @@ render(){
   );
 }
 }
+
+ShowTotal.propTypes = {
+  stringValue: PropTypes.object.isRequired,
+  numericValue: PropTypes.object.isRequired
+}
+
 
 export default ShoppingCartMainPage;

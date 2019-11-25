@@ -1,11 +1,13 @@
 import React from 'react'
-import {Form,Dropdown, Button} from 'react-bootstrap'
+import {Form} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const divStyle ={
     marginTop: '50px',
     marginBottom:'20px',
     width:'650px',
     paddingLeft:'50px',
+    paddingTop:'15px',
     border: '5px solid blue'
 }
 
@@ -27,9 +29,8 @@ const divStyle ={
       StateDropDownMenuItem(){
           return(
             <div>
-            <label for="state" class="col-sm-2 control-label">State</label>
-                {/* <div class="col-sm-10"> */}
-                <select class="form-control" id="state" name="state" style={{width:'250px'}}>
+            <label htmlFor="state" className="col-sm-2 control-label">State</label>
+                <select className="form-control" id="state" name="state" style={{width:'250px'}}>
                     <option value="">N/A</option>
                     <option value="AK">Alaska</option>
                     <option value="AL">Alabama</option>
@@ -89,26 +90,48 @@ const divStyle ={
           );
       }
 
+
      render(){
     return(
-    <div class="row justify-content-md-center" >     
-    <Form >
-    <div class="border border-info" style={divStyle}>
+    <div className="row justify-content-md-center" >     
+    <Form style={{paddingBottom:'50px'}}>
+    
+    <div className="border border-info" style={divStyle}>
+    <h5>Shipping Address</h5>
     <Form.Group controlId="ShippingAddress" style={{width:'500px'}}>
-    <Form.Label>Address</Form.Label>
-    <Form.Control type="text" name="address" required placeholder="Street address" />
-    <Form.Label>Address 2 (Optional)</Form.Label>
-    <Form.Control type="text" name="address2" placeholder="Apartment Suit Floor" />
-    <Form.Label>City</Form.Label>
-    <Form.Control type="text" name="city" required placeholder="City" />
-    <this.StateDropDownMenuItem />
-    <Form.Label>Zipcode</Form.Label>
-    <Form.Control type="number" name="zipcode" required placeholder="Zipcode" style={{width:'300px'}} />
-    <Form.Label>Phone Number</Form.Label>
-    <Form.Control type="number" name="phoneNumber" required placeholder="Phone Number"/>
-    </Form.Group>
-    </div>
-    <div class="border border-info" style={divStyle}>
+      <Form.Label>Address</Form.Label>
+      <Form.Control type="text" name="address" required placeholder="Street address" />
+      <Form.Label>Address 2 (Optional)</Form.Label>
+      <Form.Control type="text" name="address2" placeholder="Apartment Suit Floor" />
+      <Form.Label>City</Form.Label>
+      <Form.Control type="text" name="city" required placeholder="City" />
+      <this.StateDropDownMenuItem />
+      <Form.Label>Zipcode</Form.Label>
+      <Form.Control type="number" name="zipcode" required placeholder="Zipcode" style={{width:'300px'}} />
+      <Form.Label>Phone Number</Form.Label>
+      <Form.Control type="number" name="phoneNumber" required placeholder="Phone Number"/>
+      </Form.Group>
+    </div> 
+    
+    <div className="border border-info" style={divStyle}>
+    <h5>Billing Address</h5>
+    <Form.Group controlId="ShippingAddress" style={{width:'500px'}}>
+      <Form.Label>Address</Form.Label>
+      <Form.Control type="text" name="address" required placeholder="Street address" />
+      <Form.Label>Address 2 (Optional)</Form.Label>
+      <Form.Control type="text" name="address2" placeholder="Apartment Suit Floor" />
+      <Form.Label>City</Form.Label>
+      <Form.Control type="text" name="city" required placeholder="City" />
+      <this.StateDropDownMenuItem />
+      <Form.Label>Zipcode</Form.Label>
+      <Form.Control type="number" name="zipcode" required placeholder="Zipcode" style={{width:'300px'}} />
+      <Form.Label>Phone Number</Form.Label>
+      <Form.Control type="number" name="phoneNumber" required placeholder="Phone Number"/>
+      </Form.Group>
+    </div> 
+
+    <div className="border border-info" style={divStyle}>
+    <h5>Card Details</h5>
     <Form.Group style={{width:'500px'}} controlId="cardInformation">
     <Form.Label>Card Holder Name</Form.Label>
     <Form.Control type="text" name="cardHolderName" required placeholder="Name" />
@@ -118,11 +141,13 @@ const divStyle ={
     <Form.Control type="number" name="cvc" required placeholder="CVC" />
     </Form.Group>
     </div>
-    <button className="btn btn-info btn-md">
+    <Link to="/confirmPayment"><button className="btn btn-info btn-md" style={{marginRight:'10px'}}>
     Continue
+    </button></Link>
+    <button className="btn btn-info btn-md">
+    Cancel
     </button>
     </Form>
-    
     </div>
 
     );

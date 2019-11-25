@@ -8,6 +8,7 @@ import { Home } from './home.js'
 import ProductList from './ProductList'
 import ShoppingCartMainPage from '../shoppingCart/ShoppingCartMainPage'
 import ShippingDetails from '../shoppingCart/Checkout'
+import {SaveCartData} from '../shoppingCart/ShoppingCartMainPage'
 
 const shoes = [{
     productId: 1,
@@ -75,7 +76,8 @@ const App = () => (
                 render={() => (<ShoppingCartMainPage />)} />
             <Route path='/checkout' 
             render={() => (<ShippingDetails />)}/>
-            
+            <Route path='/confirmPayment' 
+            render={() => (<SaveCartData />)}/>
         </Switch>
     </div>
 )
