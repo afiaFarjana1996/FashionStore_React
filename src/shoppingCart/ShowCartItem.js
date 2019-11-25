@@ -1,6 +1,3 @@
-
-import React from "react"
-import {Form,Modal,Button,ButtonToolbar} from 'react-bootstrap';
 import React from "react"
 import {Form,Modal,Button,ButtonToolbar} from 'react-bootstrap';
 import PropTypes from 'prop-types'
