@@ -83,7 +83,7 @@ render(){
          <ShowTotal stringValue={"Total:"} numericValue={total.toFixed(2)}/>
          </tbody>
          </Table>
-          <Link to="/checkout"><Button className="page btn btn-sm btn-info" >
+          <Link to="/checkout"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
            Proceed to Checkout
           </Button></Link>
        </div>
