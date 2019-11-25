@@ -68,13 +68,13 @@ render(){
        <div className="justify-content-md-center">
        <Table striped>
          <thead>
-         <th>Product Name</th>
+         <tr><th>Product Name</th>
          <th>Brand</th>
          <th>Size</th>
          <th>Price</th>
          <th>Quantity</th>
          <th></th>
-         <th></th>
+         <th></th></tr>
          </thead>
          <tbody>
          {shoppingCartItem}
