@@ -1,4 +1,3 @@
-
 import React,{Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -89,7 +88,7 @@ render(){
          </tbody>
          </Table>
          </div>
-          <Link to="/checkout"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
+          <Link to="/confirmPayment"><Button className="page btn btn-sm btn-info" style={{marginLeft:'50px'}}>
            Proceed to Checkout
           </Button></Link>
        </div>

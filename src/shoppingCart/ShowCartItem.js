@@ -3,6 +3,7 @@ import {Form,Modal,Button,ButtonToolbar} from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
 
+
 function DeleteButton(){
     const [show, setShow] = React.useState(false);
     const handleClose = () => setShow(false);
@@ -84,9 +85,8 @@ export const ShowCart= (props) => {
                </tr>
         
     );
-    
 }
-
+    
 ShowCart.propTypes = {
   item: PropTypes.object.isRequired
 }

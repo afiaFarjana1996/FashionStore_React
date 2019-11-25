@@ -74,7 +74,7 @@ const App = () => (
                     products={pants}/>)} />
             <Route path='/cart'
                 render={() => (<ShoppingCartMainPage />)} />
-            <Route path='/checkout' 
+            <Route path='/register' 
             render={() => (<ShippingDetails />)}/>
             <Route path='/confirmPayment' 
             render={() => (<SaveCartData />)}/>
