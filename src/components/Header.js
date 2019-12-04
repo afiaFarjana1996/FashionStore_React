@@ -13,9 +13,10 @@ export const Header = () => (
                         <img width="170px" height="140px" src="images/logo.png" />
                     </Link>
                 </li>
-                <li className="list-inline-item"><Link to="/shoes" replace>Shoes</Link></li>
-                <li className="list-inline-item"><Link to="/shirts" replace>Shirts</Link></li>
-                <li className="list-inline-item"><Link to="/pants" replace>Pants</Link></li>
+                <li className="list-inline-item"><Link to="/menshirt" replace>Men Shirt</Link></li>
+                <li className="list-inline-item"><Link to="/menshoe" replace>Men Shoe</Link></li>
+                <li className="list-inline-item"><Link to="/womenshoe" replace>Women Shoe</Link></li>
+                <li className="list-inline-item"><Link to="/menjacket" replace>Men Jacket</Link></li>
                 
             </ul>
                 

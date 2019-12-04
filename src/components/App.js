@@ -5,81 +5,105 @@ import { Switch, Route } from 'react-router-dom'
 
 import { Header } from './header.js'
 import { Home } from './home.js'
-import ProductList from './ProductList'
-import ShoppingCartMainPage from '../shoppingCart/ShoppingCartMainPage'
-import ShippingDetails from '../shoppingCart/Checkout'
-import {SaveCartData} from '../shoppingCart/ShoppingCartMainPage'
-
-const shoes = [{
-    productId: 1,
-    brand: 'Nike',
-    name: 'Air Jordan',
-    price: 100
-}, {
-    productId: 2,
-    brand: 'Adidas',
-    name: 'Running Shoes',
-    price: 100
-}, {
-    productId: 3,
-    brand: 'Nike',
-    name: 'Running Shoes',
-    price: 100
-}]
-
-const shirts = [{
-    productId: 1,
-    brand: 'Nike',
-    name: 'Basketball shirt',
-    price: 100
-}, {
-    productId: 2,
-    brand: 'Polo',
-    name: 'polo',
-    price: 100
-}, {
-    productId: 3,
-    brand: 'NFL',
-    name: 'jersey',
-    price: 100
-}]
-
-const pants = [{
-    productId: 1,
-    brand: 'X',
-    name: 'sweatpants',
-    price: 100
-}, {
-    productId: 2,
-    brand: 'Levi',
-    name: 'jeans',
-    price: 100
-}]
+import {ShowMenShirts,ShowMenShoes,ShowWomenShoes,ShowMenJacket} from './ShowProducts'
+// import ShoppingCartMainPage from './shoppingCart/ShoppingCartMainPage'
+import ShippingDetails from './shoppingCart/Checkout'
+import ProductStore from '../stores/productStore'
+import {GetProductItems} from './ProductRow'
 
 
+class App extends React.Component{
 
-const App = () => (
-    <div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            menShirts:{
+                menShirtList: [],
+                readState:{
+                    pending:false,
+                    success:false,
+                    failure:false
+                },
+                error: ''
+            },
+            menShoes:{
+                menShoeList: [],
+                readState:{
+                    pending:false,
+                    success:false,
+                    failure:false
+                },
+                error: ''
+            },
+            womenShoe:{
+                womenShoeList: [],
+                readState:{
+                    pending:false,
+                    success:false,
+                    failure:false
+                },
+                error: ''
+            },
+            menJacket:{
+                menJacketList: [],
+                readState:{
+                    pending:false,
+                    success:false,
+                    failure:false
+                },
+                error: ''
+            }
+        }
+        
+    }
+
+    render() {
+        return(
+            <div>
         <Header />
         <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/shoes'
-                render={() => (<ProductList category='Shoes'
-                    products={shoes}/>)} />
-            <Route path='/shirts'
-                render={() => (<ProductList category='Shirts'
-                    products={shirts}/>)} />
-            <Route path='/pants'
-                render={() => (<ProductList category='Pants'
-                    products={pants}/>)} />
+             <Route path='/menshirt'
+                render={() => (<ShowMenShirts />)} />
+           <Route path='/menshoe'
+                render={() => (<ShowMenShoes />)} />
+            <Route path='/womenshoe'
+                render={() => (<ShowWomenShoes />)} />
+            <Route path='/menjacket'
+                render={() => (<ShowMenJacket />)} />
             <Route path='/cart'
-                render={() => (<ShoppingCartMainPage />)} />
+                render={() => (<GetProductItems />)} />
             <Route path='/register' 
             render={() => (<ShippingDetails />)}/>
-            <Route path='/confirmPayment' 
-            render={() => (<SaveCartData />)}/>
         </Switch>
-    </div>
-)
+            </div>
+        );
+    }
 
-export default App
+    componentDidMount(){
+        ProductStore.addChangeListener(this._onMenShirtsChange.bind(this));
+        ProductStore.addChangeListener(this._onMenShoesChange.bind(this));
+        ProductStore.addChangeListener(this._onWomenShoeChange.bind(this));
+        ProductStore.addChangeListener(this._onMenJacketChange.bind(this));
+    }
+
+    componentWillUnmount(){
+        ProductStore.removeChangeListener(this._onMenShirtsChange.bind(this));
+        ProductStore.addChangeListener(this._onMenShoesChange.bind(this));
+        ProductStore.addChangeListener(this._onWomenShoeChange.bind(this));
+        ProductStore.addChangeListener(this._onMenJacketChange.bind(this));
+    }
+    _onMenShirtsChange(){
+        this.setState({menShirts: ProductStore.getAllMenShirts()});
+    }
+    _onMenShoesChange(){
+        this.setState({menShoes: ProductStore.getAllMenShoes()});
+    }
+    _onWomenShoeChange(){
+        this.setState({womenShoe: ProductStore.getAllWomenShoe()});
+    }
+    _onMenJacketChange(){
+        this.setState({menJacket: ProductStore.getAllMenJacket()});
+    }
+}
+export default App;

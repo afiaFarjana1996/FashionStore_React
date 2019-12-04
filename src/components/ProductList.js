@@ -2,8 +2,12 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProductRow from './ProductRow' 
+import {ProductRow} from './ProductRow' 
 
+
+export class ProductListClass{
+    
+}
 
 const  ProductList = ({ 
     category = '', 
@@ -16,7 +20,6 @@ const  ProductList = ({
     <table className="table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Brand</th>
                     <th>Name</th>
                     <th>Price</th>
@@ -37,5 +40,6 @@ ProductList.propTypes = {
     category: PropTypes.string,
     products: PropTypes.array
 }
+
 
 export default ProductList
