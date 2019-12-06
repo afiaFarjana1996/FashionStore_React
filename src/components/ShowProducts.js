@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductList from './ProductList'
+import {ProductList} from './ProductList'
 import axios from 'axios'
 
 export class ShowMenShirts extends React.Component{

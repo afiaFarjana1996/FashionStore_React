@@ -3,13 +3,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+
 import { Header } from './header.js'
 import { Home } from './home.js'
 import {ShowMenShirts,ShowMenShoes,ShowWomenShoes,ShowMenJacket} from './ShowProducts'
-// import ShoppingCartMainPage from './shoppingCart/ShoppingCartMainPage'
+import ShoppingCartMainPage from './shoppingCart/ShoppingCartMainPage'
 import ShippingDetails from './shoppingCart/Checkout'
 import ProductStore from '../stores/productStore'
-import {GetProductItems} from './ProductRow'
+import {ConfirmPayment} from './shoppingCart/ConfirmPayment'
 
 
 class App extends React.Component{
@@ -59,7 +60,7 @@ class App extends React.Component{
 
     render() {
         return(
-            <div>
+        <div>
         <Header />
         <Switch>
             <Route exact path='/' component={Home} />
@@ -72,15 +73,18 @@ class App extends React.Component{
             <Route path='/menjacket'
                 render={() => (<ShowMenJacket />)} />
             <Route path='/cart'
-                render={() => (<GetProductItems />)} />
+                render={() => (<ShoppingCartMainPage />)} />
             <Route path='/register' 
             render={() => (<ShippingDetails />)}/>
+            <Route path='/confirmPayment' 
+            render={() => (<ConfirmPayment />)}/>
         </Switch>
             </div>
         );
     }
 
     componentDidMount(){
+        
         ProductStore.addChangeListener(this._onMenShirtsChange.bind(this));
         ProductStore.addChangeListener(this._onMenShoesChange.bind(this));
         ProductStore.addChangeListener(this._onWomenShoeChange.bind(this));

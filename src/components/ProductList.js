@@ -2,14 +2,32 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {ProductRow} from './ProductRow' 
+import Dispatcher from '../dispatcher/appDispatcher'
+import {set} from './LruCache'
 
+let productsAdded = [] ;
 
 export class ProductListClass{
+
+    getCartItems(){
+        return productsAdded;
+    }
     
 }
+const ProductObject = new ProductListClass();
 
-const  ProductList = ({ 
+const AddToCartAction = ({product}) => {
+    product.quantity = 1;
+    productsAdded.push(product);
+    set('addProductArray',productsAdded);
+    
+    Dispatcher.dispatch({
+        actionType: 'add_to_cart',
+        data:  productsAdded
+    })
+}
+
+export const ProductList = ({ 
     category = '', 
     products = []
 }) => (
@@ -36,10 +54,34 @@ const  ProductList = ({
     </div>
 )
 
+function ProductRow ({product}){
+    const addToCart = () => {
+        AddToCartAction({product});
+    }
+    return(
+        <tr key={product.productId}>
+        <td> {product.brand} </td>
+        <td> {product.name} </td>
+        <td> {product.price} </td>
+        <td className='d-flex'>
+            <div>
+                <button type="button"
+                    className="btn btn-primary" onClick={addToCart} >Add to Cart</button>
+            </div>
+        </td>
+    </tr>
+    );
+}
+
+
 ProductList.propTypes = {
     category: PropTypes.string,
     products: PropTypes.array
 }
+ProductRow.propTypes = {
+    product: PropTypes.object.isRequired
+}
 
 
-export default ProductList
+
+export default ProductObject
