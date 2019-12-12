@@ -3,10 +3,9 @@ import {get} from '../LruCache'
 import {Table} from 'react-bootstrap'
 import {StripeBtn} from '../StripeButton'
 
-
-export function ConfirmPayment(){
+export function ConfirmPayment(props){
+   
     const confirmPageDetails = get('confirmPageDetails');
-    console.log(confirmPageDetails.subTotal);
     return(
         <div className='container'>
         <div className='d-flex align-items-center'>
@@ -16,11 +15,12 @@ export function ConfirmPayment(){
             <tr>  <td>Subtotal</td> <td>{confirmPageDetails.subTotal}</td> </tr>
             <tr>  <td>Tax</td> <td>{confirmPageDetails.tax}</td> </tr>
             <tr>  <td>Total</td> <td>{confirmPageDetails.total}</td> </tr>
-            <tr><StripeBtn amount={confirmPageDetails.total.toFixed(2)}/></tr>
             </tbody>
      </Table>
-     
      </div>
+     <StripeBtn amount={confirmPageDetails.total.toFixed(2)} history={props.history}/>
      </div>
     );
 }
+
+

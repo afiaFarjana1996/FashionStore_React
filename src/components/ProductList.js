@@ -2,55 +2,34 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import Dispatcher from '../dispatcher/appDispatcher'
-import {set} from './LruCache'
-
+import {set,get} from './LruCache'
+import {ShowCartAction} from './shoppingCart/ShoppingCartMainPage'
 let productsAdded = [] ;
 
-export class ProductListClass{
-
-    getCartItems(){
-        return productsAdded;
-    }
-    
-}
-const ProductObject = new ProductListClass();
 
 const AddToCartAction = ({product}) => {
     product.quantity = 1;
     productsAdded.push(product);
     set('addProductArray',productsAdded);
-    
-    Dispatcher.dispatch({
-        actionType: 'add_to_cart',
-        data:  productsAdded
-    })
+    console.log("Inside add to cart action method: ");
+    console.log(get('addProductArray'));
+    ShowCartAction.render_cart();
 }
 
 export const ProductList = ({ 
     category = '', 
     products = []
 }) => (
-    <div className='container'>
+    <div >
         <div className='d-flex align-items-center'>
-        <h1 className='m-0'>{category}</h1>
-    </div>
-    <table className="table">
-            <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th/>
-                </tr>
-            </thead>
-            <tbody>
+        <h1 className='heading m-0'>{category}</h1>
+      </div>
+           <div className="grid-container">
                 {products.map(product => (
                     <ProductRow key={product.productId}
                         product={product}/> 
                 ))}
-            </tbody>
-        </table>
+            </div>
     </div>
 )
 
@@ -59,17 +38,16 @@ function ProductRow ({product}){
         AddToCartAction({product});
     }
     return(
-        <tr key={product.productId}>
-        <td> {product.brand} </td>
-        <td> {product.name} </td>
-        <td> {product.price} </td>
-        <td className='d-flex'>
-            <div>
-                <button type="button"
-                    className="btn btn-primary" onClick={addToCart} >Add to Cart</button>
+        <div className="border border-info mainBody">
+            <img className="productImage" src={'../images/'+product.imageName} />
+            <br/>
+            <label className="productInfo">{product.name}</label><br/>
+            <label className="productInfo">{product.brand}</label><br/>
+            <label className="productInfo">{product.price} </label><br/>
+            <button type="button"
+                className="btn btn-primary addToCartButton" onClick={addToCart} >Add to Cart</button>
             </div>
-        </td>
-    </tr>
+            
     );
 }
 
@@ -82,6 +60,3 @@ ProductRow.propTypes = {
     product: PropTypes.object.isRequired
 }
 
-
-
-export default ProductObject

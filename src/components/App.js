@@ -8,10 +8,10 @@ import { Header } from './header.js'
 import { Home } from './home.js'
 import {ShowMenShirts,ShowMenShoes,ShowWomenShoes,ShowMenJacket} from './ShowProducts'
 import ShoppingCartMainPage from './shoppingCart/ShoppingCartMainPage'
-import ShippingDetails from './shoppingCart/Checkout'
+import ShippingDetails from './shoppingCart/Registration'
 import ProductStore from '../stores/productStore'
 import {ConfirmPayment} from './shoppingCart/ConfirmPayment'
-
+import {ShowCartObject} from './shoppingCart/ShoppingCartMainPage'
 
 class App extends React.Component{
 
@@ -53,7 +53,15 @@ class App extends React.Component{
                     failure:false
                 },
                 error: ''
+            },
+            cartData:[],
+            totalToPay:{
+              subTotal: 0,
+              totalItem: 0,
+              tax: 0,
+              total: 0
             }
+
         }
         
     }
@@ -73,11 +81,15 @@ class App extends React.Component{
             <Route path='/menjacket'
                 render={() => (<ShowMenJacket />)} />
             <Route path='/cart'
-                render={() => (<ShoppingCartMainPage />)} />
+                render={(props) => (<ShoppingCartMainPage {...props} cartData={this.state.cartData} totalToPay={this.state.totalToPay}/>)} />
             <Route path='/register' 
-            render={() => (<ShippingDetails />)}/>
+            render={() => (<ShippingDetails />)} />
             <Route path='/confirmPayment' 
-            render={() => (<ConfirmPayment />)}/>
+            render={(props) => (<ConfirmPayment {...props}/>)}/>
+            <Route path='/confirmationPage' 
+            component={Home} />
+            
+
         </Switch>
             </div>
         );
@@ -89,13 +101,15 @@ class App extends React.Component{
         ProductStore.addChangeListener(this._onMenShoesChange.bind(this));
         ProductStore.addChangeListener(this._onWomenShoeChange.bind(this));
         ProductStore.addChangeListener(this._onMenJacketChange.bind(this));
+        ShowCartObject.addChangeListener(this._onCartChange.bind(this));
     }
 
     componentWillUnmount(){
         ProductStore.removeChangeListener(this._onMenShirtsChange.bind(this));
-        ProductStore.addChangeListener(this._onMenShoesChange.bind(this));
-        ProductStore.addChangeListener(this._onWomenShoeChange.bind(this));
-        ProductStore.addChangeListener(this._onMenJacketChange.bind(this));
+        ProductStore.removeChangeListener(this._onMenShoesChange.bind(this));
+        ProductStore.removeChangeListener(this._onWomenShoeChange.bind(this));
+        ProductStore.removeChangeListener(this._onMenJacketChange.bind(this));
+        ShowCartObject.removeChangeListener(this._onCartChange.bind(this));
     }
     _onMenShirtsChange(){
         this.setState({menShirts: ProductStore.getAllMenShirts()});
@@ -109,5 +123,15 @@ class App extends React.Component{
     _onMenJacketChange(){
         this.setState({menJacket: ProductStore.getAllMenJacket()});
     }
+    _onCartChange(){
+        console.log("inside cart change method:");
+        this.setState({
+            cartData: ShowCartObject.getAllCartItem(),
+            totalToPay: ShowCartObject.getAllTotalPrice()   
+        });
+        console.log(this.state.cartData);
+        console.log(this.state.total);
+    }
+
 }
 export default App;

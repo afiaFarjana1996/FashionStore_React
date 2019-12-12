@@ -10,7 +10,7 @@ export class ShowMenShirts extends React.Component{
         }
    }
     componentDidMount(){
-        axios.get(`http://localhost:3000/products/1`)
+        axios.get(`http://gcitalb-2048979286.us-east-2.elb.amazonaws.com/products/1`)
         .then(res => {
             this.setState({menShirt: res.data});
         })
@@ -35,7 +35,7 @@ export class ShowMenShoes extends React.Component{
         }
    }
     componentDidMount(){
-        axios.get(`http://localhost:3000/products/2`)
+        axios.get(`http://gcitalb-2048979286.us-east-2.elb.amazonaws.com/products/2`)
         .then(res => {
             console.log(res.data);
             this.setState({menShoe: res.data});
@@ -61,7 +61,7 @@ export class ShowMenJacket extends React.Component{
         }
    }
     componentDidMount(){
-        axios.get(`http://localhost:3000/products/4`)
+        axios.get(`http://gcitalb-2048979286.us-east-2.elb.amazonaws.com/products/4`)
         .then(res => {
             this.setState({menJacket: res.data});
         })
@@ -85,7 +85,7 @@ export class ShowWomenShoes extends React.Component{
         }
    }
     componentDidMount(){
-        axios.get(`http://localhost:3000/products/3`)
+        axios.get(`http://gcitalb-2048979286.us-east-2.elb.amazonaws.com/products/3`)
         .then(res => {
             this.setState({womenShoe: res.data});
         })

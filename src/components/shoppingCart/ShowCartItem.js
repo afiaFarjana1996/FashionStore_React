@@ -1,13 +1,16 @@
 import React from "react"
-import {Modal,Button,ButtonToolbar} from 'react-bootstrap';
+import {Form,Modal,Button,ButtonToolbar} from 'react-bootstrap';
 import PropTypes from 'prop-types'
+import {ShowCartAction} from './ShoppingCartMainPage'
 
-
-
-function DeleteButton(){
+function DeleteButton(props){
     const [show, setShow] = React.useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const deleteProduct = () => {
+      ShowCartAction.delete_from_cart(props.productId);
+      
+    }
     return(
         <React.Fragment>
         <ButtonToolbar>
@@ -22,9 +25,11 @@ function DeleteButton(){
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <Form onSubmit={deleteProduct} >
             <h4>Are you sure you want to delete this book?</h4> <br/><br/>
-              <button className="page btn btn-sm btn-info" variant="primary" type="submit" onClick={handleClose}>
-                Yes</button> 
+              <Button className="page btn btn-sm btn-info" variant="primary" type="submit" onClick={handleClose}>
+                Yes</Button> 
+              </Form>
           </Modal.Body>
         
         </Modal>
@@ -41,7 +46,7 @@ export const ShowCart= (props) => {
                    <td>{props.item.price}</td>
                    <td>{props.item.quantity}</td>
                    <td>
-                  <DeleteButton />
+                  <DeleteButton productId={props.item.productId}/>
                    </td>
                </tr>
         
@@ -51,3 +56,8 @@ export const ShowCart= (props) => {
 ShowCart.propTypes = {
   item: PropTypes.object.isRequired
 }
+DeleteButton.propTypes = {
+  productId: PropTypes.number.isRequired
+}
+
+

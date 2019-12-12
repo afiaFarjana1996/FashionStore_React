@@ -16,3 +16,7 @@ export const set = (key, value) => {
 export const get = (key) => {
    return cache.get(key);
 };
+
+export const clear = () => {
+    cache.clear();
+}
