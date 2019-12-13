@@ -7,7 +7,6 @@ let _productStore = {
     menShirts:{
         menShirtList: [],
         readState:{
-            pending:false,
             success:false,
             failure:false
         },
@@ -16,7 +15,6 @@ let _productStore = {
     menShoes:{
         menShoeList: [],
         readState:{
-            pending:false,
             success:false,
             failure:false
         },
@@ -25,7 +23,6 @@ let _productStore = {
     womenShoe:{
         womenShoeList: [],
         readState:{
-            pending:false,
             success:false,
             failure:false
         },
@@ -34,7 +31,6 @@ let _productStore = {
     menJacket:{
         menJacketList: [],
         readState:{
-            pending:false,
             success:false,
             failure:false
         },
@@ -77,22 +73,18 @@ class ProductStoreClass extends EventEmitter{
 
     resetReadState(){
         _productStore.menShirts.readState = {
-            pending:false,
             success:false,
             failure:false
           }
           _productStore.menShoes.readState = {
-            pending:false,
             success:false,
             failure:false
           }
           _productStore.womenShoe.readState = {
-            pending:false,
             success:false,
             failure:false
           }
           _productStore.menJacket.readState = {
-            pending:false,
             success:false,
             failure:false
           }
@@ -108,6 +100,7 @@ Dispatcher.register( (action) => {
         case 'read_menShirts_successful':
             ProductStore.resetReadState();
             _productStore.menShirts.menShirtList = action.data;
+            _productStore.menShirts.menShirtList.forEach(list => list.orderedQuantity = 1);
             _productStore.menShirts.readState.success = true;
             ProductStore.emitChange();
             break;

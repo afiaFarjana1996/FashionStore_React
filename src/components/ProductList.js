@@ -4,15 +4,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {set,get} from './LruCache'
 import {ShowCartAction} from './shoppingCart/ShoppingCartMainPage'
+
 let productsAdded = [] ;
 
 
 const AddToCartAction = ({product}) => {
-    product.quantity = 1;
+    product.totalPrice = product.orderedQuantity * product.price;
     productsAdded.push(product);
     set('addProductArray',productsAdded);
-    console.log("Inside add to cart action method: ");
-    console.log(get('addProductArray'));
     ShowCartAction.render_cart();
 }
 
@@ -35,7 +34,17 @@ export const ProductList = ({
 
 function ProductRow ({product}){
     const addToCart = () => {
+        if(product.quantity<product.orderedQuantity){
+            alert("Not Enough in inventory. Only \n"+product.quantity+"of this product left.");
+        }
+        else{
         AddToCartAction({product});
+        }
+    }
+    const changeQuantity = (event) => {
+        // event.preventDefault();
+        event.persist();
+       product.orderedQuantity = event.target.value;
     }
     return(
         <div className="border border-info mainBody">
@@ -44,6 +53,13 @@ function ProductRow ({product}){
             <label className="productInfo">{product.name}</label><br/>
             <label className="productInfo">{product.brand}</label><br/>
             <label className="productInfo">{product.price} </label><br/>
+            <label htmlFor="quantity" className="productInfo" style={{fontSize:'12px'}}>Quantity</label>
+                <select className="form-control" name="orderedQuantity" onChange={changeQuantity} style={{width:'50px', height:'30px'}}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
             <button type="button"
                 className="btn btn-primary addToCartButton" onClick={addToCart} >Add to Cart</button>
             </div>

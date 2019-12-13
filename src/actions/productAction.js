@@ -69,4 +69,4 @@ export const ProductsActions = {
     }
 }
 
-// module.exports = ProductsActions;
+export default ProductsActions;

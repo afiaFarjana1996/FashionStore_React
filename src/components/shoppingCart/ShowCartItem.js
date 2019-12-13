@@ -1,7 +1,7 @@
 import React from "react"
 import {Form,Modal,Button,ButtonToolbar} from 'react-bootstrap';
 import PropTypes from 'prop-types'
-import {ShowCartAction} from './ShoppingCartMainPage'
+import {ShowCartAction} from '../../actions/cartAction'
 
 function DeleteButton(props){
     const [show, setShow] = React.useState(false);
@@ -44,7 +44,7 @@ export const ShowCart= (props) => {
                    <td>{props.item.name}</td>
                    <td>{props.item.brand}</td>
                    <td>{props.item.price}</td>
-                   <td>{props.item.quantity}</td>
+                   <td>{props.item.orderedQuantity}</td>
                    <td>
                   <DeleteButton productId={props.item.productId}/>
                    </td>

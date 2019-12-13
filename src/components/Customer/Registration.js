@@ -2,16 +2,7 @@ import React from 'react'
 import {Form} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const divStyle ={
-    marginTop: '50px',
-    marginBottom:'20px',
-    width:'650px',
-    paddingLeft:'50px',
-    paddingTop:'15px',
-    border: '5px solid blue'
-}
-
- class ShippingDetails extends React.Component {
+ class Registration extends React.Component {
 
     constructor (props) {
         super(props);
@@ -96,7 +87,7 @@ const divStyle ={
     <div className="row justify-content-md-center" >     
     <Form style={{paddingBottom:'50px'}}>
     
-    <div className="border border-info" style={divStyle}>
+    <div className="border border-info formDiv">
     <h5>Shipping Address</h5>
     <Form.Group controlId="ShippingAddress" style={{width:'500px'}}>
       <Form.Label>Address</Form.Label>
@@ -113,7 +104,7 @@ const divStyle ={
       </Form.Group>
     </div> 
     
-    <div className="border border-info" style={divStyle}>
+    <div className="border border-info formDiv">
     <h5>Billing Address</h5>
     <Form.Group controlId="ShippingAddress" style={{width:'500px'}}>
       <Form.Label>Address</Form.Label>
@@ -130,7 +121,7 @@ const divStyle ={
       </Form.Group>
     </div> 
 
-    <div className="border border-info" style={divStyle}>
+    <div className="border border-info formDiv">
     <h5>Card Details</h5>
     <Form.Group style={{width:'500px'}} controlId="cardInformation">
     <Form.Label>Card Holder Name</Form.Label>
@@ -154,4 +145,4 @@ const divStyle ={
 }
  }
 
- export default ShippingDetails;
+ export default Registration;

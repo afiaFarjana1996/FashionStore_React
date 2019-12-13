@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import date from 'date-and-time'
 import {get} from '../components/LruCache'
 
-
 export const StripeBtn = (props) => {
   const publishableKey = "pk_test_MCokVVfFikiWylQdoWGfljUA00EakVW6wA";
   console.log("Inside stripe button method: ");
@@ -26,7 +25,6 @@ export const StripeBtn = (props) => {
 
      axios.post(`http://localhost:3000/orders`,order)
           .then(res =>{
-           
             var productsToInsert = get('addProductArray');
             productsToInsert.forEach(cartItem => {
                 cartItem.orderId = res.data.insertId;
@@ -77,19 +75,6 @@ export const StripeBtn = (props) => {
     </StripeCheckout> 
   );
 };
-
-// Dispatcher.register( (action) => {
-//   switch (action.actionType){
-//       case 'create_order_success':
-//            _order.orderId=action.data;
-//           break;
-//       case 'Transaction Complete':
-//            clear();
-//            break;
-//       default:
-//           return;
-//   }
-// });
 
 StripeBtn.propTypes = {
   amount: PropTypes.number.isRequired,
