@@ -4,7 +4,8 @@
   "description": "Library Management System",
   "main": "main.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "start": "gulp watch open" 
   },
   "author": "",
   "license": "",

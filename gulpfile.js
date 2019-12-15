@@ -32,7 +32,7 @@ gulp.task('connect', function() {
 		root: ['dist'],
 		port: config.port,
 		base: config.devBaseUrl,
-		livereload: false
+		livereload: true
 	});
 });
 
@@ -80,4 +80,4 @@ gulp.task('watch', function() {
 	gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'lint']);
