@@ -1,9 +1,10 @@
 import Dispatcher from '../dispatcher/appDispatcher';
-import axios from 'axios'
+import axios from 'axios';
+import CONFIG from '../config'
 
 export const ProductsActions = {
     readMenShirts: function(){
-        axios.get(`http://localhost:3000/products/1`)
+       axios.get(CONFIG.backend_url+"products/1")
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'read_menShirts_successful',
@@ -19,7 +20,7 @@ export const ProductsActions = {
         });
     },
     readMenShoes: function(){
-        axios.get(`http://localhost:3000/products/2`)
+        axios.get(CONFIG.backend_url+`products/2`)
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'read_menShoes_successful',
@@ -36,7 +37,7 @@ export const ProductsActions = {
     },
 
     readWomenShoes: function(){
-        axios.get(`http://localhost:3000/products/3`)
+        axios.get(CONFIG.backend_url+`products/3`)
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'read_womenShoe_successful',
@@ -52,7 +53,7 @@ export const ProductsActions = {
         });
     },
     readMenJacket: function(){
-        axios.get(`http://localhost:3000/products/4`)
+        axios.get(CONFIG.backend_url+`products/4`)
         .then(res => {
             Dispatcher.dispatch({
                 actionType: 'read_menJacket_successful',

@@ -1,9 +1,9 @@
 import Dispatcher from '../dispatcher/appDispatcher';
 import axios from 'axios'
-
+import CONFIG from '../config'
 export const OrderActions = {
     order_confirmation : function(){
-       axios.get(`http://localhost:3000/orderDetails`)
+       axios.get(CONFIG.backend_url+`orderDetails`)
        .then(res => {
         Dispatcher.dispatch({
             actionType: 'read_order_confirmation_success',

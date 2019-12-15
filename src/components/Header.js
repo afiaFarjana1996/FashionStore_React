@@ -4,9 +4,6 @@ import React from 'react'
 import { Button, Navbar, Nav,NavDropdown} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const homeStyle = {
-  color : 'blue'
-}
 export const Header = () => (
   <Navbar bg="dark" variant="dark" sticky="top">
     <Navbar.Brand>    <Link to="/" >

@@ -18,6 +18,7 @@ import {CartStore} from '../stores/cartStore'
 import {ConfirmPayment} from './shoppingCart/ConfirmPayment'
 import {OrderConfirmation} from './shoppingCart/OrderConfirmation'
 import {OrderStoreObject} from '../stores/orderStore'
+import UserSession from '../stores/userSessionStore'
 
 class App extends React.Component{
 
@@ -64,10 +65,12 @@ class App extends React.Component{
               tax: 0,
               total: 0
             },
-            confirmedOrderDetails : []
-
+            confirmedOrderDetails : [],
+            _userSession : {
+                response : {},
+                isLoggedIn : false
+             }
         }
-        
     }
 
     render() {
@@ -109,6 +112,7 @@ class App extends React.Component{
         ProductStore.addChangeListener(this._onMenJacketChange.bind(this));
         CartStore.addChangeListener(this._onCartChange.bind(this));
        OrderStoreObject.addChangeListener(this._onOrderIdChange.bind(this));
+       UserSession.addChangeListener(this._onUserSessionChange.bind(this));
     }
 
     componentWillUnmount(){
@@ -118,6 +122,7 @@ class App extends React.Component{
         ProductStore.removeChangeListener(this._onMenJacketChange.bind(this));
         CartStore.removeChangeListener(this._onCartChange.bind(this));
        OrderStoreObject.removeChangeListener(this._onOrderIdChange.bind(this));
+       UserSession.removeChangeListener(this._onUserSessionChange.bind(this));
     }
     _onMenShirtsChange(){
         this.setState({menShirts: ProductStore.getAllMenShirts()});
@@ -141,6 +146,9 @@ class App extends React.Component{
          this.setState({
             confirmedOrderDetails: OrderStoreObject.getAllConfirmedOrderds()
          });
+    }
+    _onUserSessionChange(){
+
     }
 
 }

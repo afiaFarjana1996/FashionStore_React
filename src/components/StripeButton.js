@@ -5,6 +5,7 @@ import {Button} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import date from 'date-and-time'
 import {get} from '../components/LruCache'
+import CONFIG from '../config'
 
 export const StripeBtn = (props) => {
   const publishableKey = "pk_test_MCokVVfFikiWylQdoWGfljUA00EakVW6wA";
@@ -23,7 +24,7 @@ export const StripeBtn = (props) => {
     creditCardId:1
   }
 
-     axios.post(`http://localhost:3000/orders`,order)
+     axios.post(CONFIG.backend_url+`orders`,order)
           .then(res =>{
             var productsToInsert = get('addProductArray');
             productsToInsert.forEach(cartItem => {
@@ -31,7 +32,7 @@ export const StripeBtn = (props) => {
                 cartItem.taxes = cartItem.price * 0.08;
             });
 
-                axios.post(`http://localhost:3000/orderDetails`,productsToInsert)
+                axios.post(CONFIG.backend_url+`orderDetails`,productsToInsert)
                      .then(res => {
                          console.log(res);
                      })
@@ -40,7 +41,7 @@ export const StripeBtn = (props) => {
                     });
           })
          .then(res => {
-            axios.post("http://localhost:3000/pay", body)
+            axios.post(CONFIG.backend_url+"pay", body)
                       .then(response => {
                         props.history.push('/confirmationPage');
                          alert("Payment Success"); 

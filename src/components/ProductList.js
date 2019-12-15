@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {set,get} from './LruCache'
+import {set} from './LruCache'
 import {ShowCartAction} from './shoppingCart/ShoppingCartMainPage'
 
 let productsAdded = [] ;
@@ -48,7 +48,7 @@ function ProductRow ({product}){
     }
     return(
         <div className="border border-info mainBody">
-            <img className="productImage" src={'../images/'+product.imageName} />
+            <img className="productImage" src={product.imageUrl} />
             <br/>
             <label className="productInfo">{product.name}</label><br/>
             <label className="productInfo">{product.brand}</label><br/>
