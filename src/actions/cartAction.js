@@ -7,6 +7,7 @@ export const ShowCartAction ={
       const TotalItem = Number(get('addProductArray').reduce((total, item) => total + item.orderedQuantity, 0));
       const SubTotal = Number(get('addProductArray').reduce((total, item) => total + item.totalPrice, 0));
       const Tax = SubTotal * 0.08;
+      console.log(Tax);
       Dispatcher.dispatch({
         actionType: 'rendered_cart_data',
         data: {
