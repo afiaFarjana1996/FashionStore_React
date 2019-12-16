@@ -18,5 +18,13 @@ export const get = (key) => {
 };
 
 export const clear = () => {
-    cache.clear();
+    cache.reset();
+}
+
+export const isCacheEmpty = (key) => {
+    var isEmpty=false;
+    if(cache.get(key).length == 0 ){
+        isEmpty = true;
+    }
+    return isEmpty;
 }

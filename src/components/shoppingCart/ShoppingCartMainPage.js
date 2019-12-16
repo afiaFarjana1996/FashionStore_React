@@ -32,8 +32,7 @@ class ShoppingCartMainPage extends Component {
     var cart = this.props.cartData;
     set('confirmPageDetails', this.props.totalToPay);
     let content = '';
-    if (typeof cart == "undefined") {
-      cart = "No Product in the shopping cart.";
+    if (cart.length == 0) {
       content = (
         <div className="alert alert-danger" role="alert">
           {cart}
