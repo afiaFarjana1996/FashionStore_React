@@ -1,2 +1,2 @@
-# GCIT Fashion Store UI
+# GCIT Fashion Store 
 #
