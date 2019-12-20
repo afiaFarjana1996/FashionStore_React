@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import date from 'date-and-time'
 import {get} from '../components/LruCache'
 import CONFIG from '../config'
+import cookie from 'react-cookies'
+import {loadCookie} from './cookie'
 
 export const StripeBtn = (props) => {
   const publishableKey = "pk_test_MCokVVfFikiWylQdoWGfljUA00EakVW6wA";
@@ -16,17 +18,17 @@ export const StripeBtn = (props) => {
       amount: props.amount*100,
       token: token
   };
-
+  var userData = cookie.load('userCookie');
   let order = {
-    userId: 1,
+    userId: userData[0].userId,
     orderDate: date.format(new Date(),'YYYY/MM/DD'),
     employeeId: null,
-    creditCardId:1
+    creditCardId:userData[0].creditCardId
   }
 
      axios.post(CONFIG.backend_url+`orders`,order)
           .then(res =>{
-            var productsToInsert = get('addProductArray');
+            var productsToInsert = loadCookie('cartData');
             productsToInsert.forEach(cartItem => {
                 cartItem.orderId = res.data.insertId;
                 cartItem.taxes = cartItem.price * 0.08;

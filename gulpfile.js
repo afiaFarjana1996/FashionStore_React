@@ -80,4 +80,4 @@ gulp.task('watch', function() {
 	gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
-gulp.task('default', ['html', 'js', 'css', 'images', 'lint']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'lint','open','watch']);

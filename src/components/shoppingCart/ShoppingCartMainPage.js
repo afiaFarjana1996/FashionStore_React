@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { Table, Button } from 'react-bootstrap'
 import { ShowCart } from './ShowCartItem'
 import {set } from '../LruCache'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import cookie from 'react-cookies'
 import {ShowCartAction} from '../../actions/cartAction'
+import {loadCookie} from '../cookie'
 
 
 const ShowTotal = (props) => {
@@ -30,12 +32,22 @@ class ShoppingCartMainPage extends Component {
 
   render() {
     var cart = this.props.cartData;
+    console.log("inside show cart render ");
+    console.log(cart);
     set('confirmPageDetails', this.props.totalToPay);
     let content = '';
-    if (cart.length == 0) {
+
+   const handleConfirmPayment = () => {
+      if(!cookie.load('userCookie')){
+         alert("Please log in to proceed.");
+      }else{
+        this.props.history.push('/confirmPayment');
+      }
+    }
+    if (!cookie.load('cartData')) {
       content = (
         <div className="alert alert-danger" role="alert">
-          {cart}
+          The cart is empty.
         </div>
       )
     } else {
@@ -60,13 +72,13 @@ class ShoppingCartMainPage extends Component {
               </tbody>
             </Table>
           </div>
-          <Link to="/confirmPayment"> <Button className="page btn btn-sm btn-info" style={{ marginLeft: '50px' }}>
+          <Button className="page btn btn-sm btn-info" style={{ marginLeft: '50px' }} onClick={handleConfirmPayment}>
             Checkout
-         </Button> </Link>
+         </Button> 
         </div>
       )
     }
-
+    
 
     return (
       <div className='container'>

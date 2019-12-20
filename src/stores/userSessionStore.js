@@ -1,13 +1,14 @@
 "use strict"
-import React from 'react'
+
 import Dispatcher from '../dispatcher/appDispatcher';
 import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
 
  let _userSession = {
-    response : {},
-    isLoggedIn : false
+    isLoggedIn : false,
+    isLoggedOut : false,
+    didLoginFail : false
  }
 
  class UserSessionStoreClass extends EventEmitter{
@@ -24,6 +25,8 @@ const CHANGE_EVENT = 'change';
     }
     resetLogInStatus(){
         _userSession.isLoggedIn = false;
+        _userSession.isLoggedOut = false;
+        _userSession.didLoginFail = false;
     }
     getUserSession(){
         return _userSession;
@@ -35,10 +38,31 @@ const CHANGE_EVENT = 'change';
  Dispatcher.register((action) => {
     switch(action.actionType){
      case 'login_succeessfull':
-        _userSession.response = action.data;
+         UserSession.resetLogInStatus();
         _userSession.isLoggedIn = true;
         UserSession.emitChange();
          break;
+     case 'login_failure':
+         UserSession.resetLogInStatus();
+         _userSession.didLoginFail = true;
+         _userSession.isLoggedOut = true;
+         UserSession.emitChange();
+         break;
+    case 'load_profile_page':
+        UserSession.resetLogInStatus();
+        _userSession.isLoggedIn = true;
+        UserSession.emitChange();
+        break;
+     case 'currently_logged_out':
+        UserSession.resetLogInStatus();
+         _userSession.isLoggedOut = true;
+        UserSession.emitChange();
+        break;
+    case 'successfully_logged_out':
+        UserSession.resetLogInStatus();
+        _userSession.isLoggedOut = true;
+        UserSession.emitChange();
+        break;
     default:
         return;
          

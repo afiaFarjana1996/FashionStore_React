@@ -3,7 +3,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {set} from './LruCache'
-import {ShowCartAction} from './shoppingCart/ShoppingCartMainPage'
+import {setCookie,loadCookie} from './cookie'
+import cookie from 'react-cookies'
+import {ShowCartAction} from '../actions/cartAction'
 
 let productsAdded = [] ;
 
@@ -11,7 +13,9 @@ let productsAdded = [] ;
 const AddToCartAction = ({product}) => {
     product.totalPrice = product.orderedQuantity * product.price;
     productsAdded.push(product);
-    set('addProductArray',productsAdded);
+    setCookie('cartData',productsAdded);
+    console.log("Each time product is added to cart.");
+    console.log(cookie.load('cartData'));
     ShowCartAction.render_cart();
 }
 

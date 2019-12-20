@@ -19,6 +19,7 @@ import {ConfirmPayment} from './shoppingCart/ConfirmPayment'
 import {OrderConfirmation} from './shoppingCart/OrderConfirmation'
 import {OrderStoreObject} from '../stores/orderStore'
 import UserSession from '../stores/userSessionStore'
+import {UserProfile} from '../components/Customer/Profile'
 
 class App extends React.Component{
 
@@ -66,9 +67,10 @@ class App extends React.Component{
               total: 0
             },
             confirmedOrderDetails : [],
-            _userSession : {
-                response : {},
-                isLoggedIn : false
+            userSession : {
+                isLoggedIn : false,
+                isLoggedOut : false,
+                didLoginFail : false
              }
         }
     }
@@ -76,9 +78,9 @@ class App extends React.Component{
     render() {
         return(
         <div>
-        <Header />
+        <Header userSession = {this.state.userSession} />
         <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' render={() => (<Home/> )} />
              <Route path='/menshirt'
                 render={(props) => (<ShowMenShirts {...props} menShirts={this.state.menShirts}/>)} />
            <Route path='/menshoe'
@@ -92,11 +94,13 @@ class App extends React.Component{
             <Route path='/register' 
             render={() => (<Registration />)} />
             <Route path='/login' 
-            render={() => (<Login />)} />
+            render={(props) => (<Login {...props} userSession={this.state.userSession}/>)} />
             <Route path='/confirmPayment' 
             render={() => (<ConfirmPayment />)}/>
             <Route path='/confirmationPage' 
             render={(props) => (<OrderConfirmation {...props} confirmedOrderDetails={this.state.confirmedOrderDetails}/>)} /> 
+            <Route path='/profile' 
+            render={() => (<UserProfile />)}/>
             
 
         </Switch>
@@ -148,7 +152,10 @@ class App extends React.Component{
          });
     }
     _onUserSessionChange(){
-
+       this.setState({
+        userSession : UserSession.getUserSession()
+       });
+       
     }
 
 }
