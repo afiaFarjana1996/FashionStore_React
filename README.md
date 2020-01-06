@@ -9,7 +9,6 @@ React, javascript, html, css, bootstrap. Flux as state management system, gulp a
 How to run:
 Pre-requisites: install npm, nvm. setup nvm version 8.9.1
 
-
 1. run the following commands in terminal after navigating to the folder
 a) git init
 
